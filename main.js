@@ -9,6 +9,9 @@ const printRickAndMortyAliveCharacters = async function()
                                     .then((charsJSON) => charsJSON.results);
     const aliveChars = charatcersObj.filter((char) => char.status === 'Alive');
 
+    // Replaces all white spaces with a single _
+    const regexAllSpaces = /\s+/gi;
+    const modNames = aliveChars.map((char) => {char.name = char.name.replaceAll(regexAllSpaces, '_'); return char})
 
 }
 
