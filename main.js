@@ -1,13 +1,13 @@
 
 
 
-const printRickAndMortyAliveCharacters = function()
+const printRickAndMortyAliveCharacters = async function()
 {
 
-    const charatcersObj = fetch("https://rickandmortyapi.com/api/character");
-    charatcersObj.then((response) => response.json())
-                .then((charsJSON) => charsJSON.results)
-                .then((result) => console.log(result))
+    const charatcersObj = await fetch("https://rickandmortyapi.com/api/character")
+                                    .then((response) => response.json())
+                                    .then((charsJSON) => charsJSON.results);
+    console.log(charatcersObj)
 }
 
 printRickAndMortyAliveCharacters();
