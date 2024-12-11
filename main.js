@@ -1,9 +1,9 @@
 
 
 
-const printRickAndMortyAliveCharacters = async function()
+const getRickAndMortyAliveCharacters = async function()
 {
-
+    // ---- Specifications --------
     const charatcersObj = await fetch("https://rickandmortyapi.com/api/character")
                                     .then((response) => response.json())
                                     .then((charsJSON) => charsJSON.results);  
@@ -11,13 +11,19 @@ const printRickAndMortyAliveCharacters = async function()
 
     // Replaces all sequences of white spaces with a single underscore
     const regexAllSpaces = /\s+/gi;
-    const modNames = aliveCharacters.map((char) => {
-                                            char.name = char.name.replaceAll(regexAllSpaces, '_');
-                                            return char
-                                        });
+    const modifiedNames = aliveCharacters.map((char) => {
+        char.name = char.name.replace(regexAllSpaces, '_');
+        return char
+    });
     
-    for(character of modNames) console.log(character.name);
+    for(character of modifiedNames) console.log(character.name);
+    
 
+    // ---- Return format --------
+    const returnObj = modifiedNames.map((char) => {
+        return {id: char.id, name: char.name, status: char.status, gender: char.gender};
+    })
+    return await JSON.stringify(returnObj);
 }
 
-printRickAndMortyAliveCharacters();
+getRickAndMortyAliveCharacters().then(console.log)
