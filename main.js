@@ -35,5 +35,3 @@ const getRickAndMortyAliveCharacters = async function()
         return JSON.stringify({results: "Error"});
     }
 }
-
-getRickAndMortyAliveCharacters().then(console.log)
